@@ -31,7 +31,7 @@ A lightweight bus seat booking application built with Angular 18 and powered by 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/bus-booking-angular.git
+git clone https://github.com/Amol5766/bus-booking-angular.git
 cd bus-booking-angular
 ```
 
@@ -97,7 +97,7 @@ src/
 
 ## 🧑‍💻 Author
 
-Built with 💻 by [Jatt](https://github.com/YOUR-GITHUB-HANDLE)
+Built with 💻 by [Jatt](https://github.com/Amol576)
 
 ---
 
