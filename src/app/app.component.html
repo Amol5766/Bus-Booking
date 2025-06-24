@@ -1,0 +1,218 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light"
+  style="background-color: rgb(171 177 183) !important"
+>
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/search']">
+      <img
+        src="https://s3.rdbuz.com/Images/rdc/rdc-redbus-logo.webp"
+        style="width: 5rem"
+        alt="abhibus"
+      />
+    </a>
+    <div class="d-flex flex-column justify-content-center">
+      <span>Trusted by</span>
+      <span class="font-weight-bold">5 Crore+ Travellers</span>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li
+          class="nav-item"
+          *ngFor="
+            let tab of [
+              'Buses',
+              'Trains',
+              'Flights',
+              'Hotels',
+              'Offers',
+              'Track Ticket',
+              'Need Help?'
+            ];
+            let i = index
+          "
+        >
+          <a class="nav-link" [routerLink]="['/search']">
+            <i
+              class="icon"
+              [ngClass]="[
+                i === 0
+                  ? 'bi-bus'
+                  : i === 1
+                  ? 'bi-train'
+                  : i === 2
+                  ? 'bi-airplane'
+                  : i === 3
+                  ? 'bi-building'
+                  : i === 4
+                  ? 'bi-gift'
+                  : i === 5
+                  ? 'bi-ticket-perforated'
+                  : 'bi-headset'
+              ]"
+            ></i>
+            {{ tab }}
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="loggedUserData; else loginBlock">
+          <a class="nav-link text-success"
+            ><i class="icon bi bi-person"></i> {{ loggedUserData.userName }}</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="loggedUserData">
+          <a class="nav-link text-danger" (click)="logoff()"
+            ><i class="icon bi bi-box-arrow-right"></i> LogOff</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ng-template #loginBlock>
+  <li class="nav-item">
+    <a class="nav-link text-danger" (click)="openModel()"
+      ><i class="icon bi bi-person"></i> Login/SignUp</a
+    >
+  </li>
+</ng-template>
+
+<router-outlet></router-outlet>
+
+<!-- Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Login / Register</h4>
+        <button type="button" class="btn-close" (click)="closeModel()"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div *ngIf="isLoginForm; else registerForm">
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+            <div class="form-outline mb-4">
+              <input
+                type="email"
+                name="emailId"
+                [(ngModel)]="loginObj.emailId"
+                id="loginEmail"
+                class="form-control"
+                required
+                placeholder="Email"
+              />
+              <label class="form-label" for="loginEmail">Email address</label>
+            </div>
+            <div class="form-outline mb-4">
+              <input
+                type="password"
+                name="password"
+                [(ngModel)]="loginObj.password"
+                id="loginPassword"
+                class="form-control"
+                required
+                placeholder="Password"
+              />
+              <label class="form-label" for="loginPassword">Password</label>
+            </div>
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="rememberMe"
+                    checked
+                  />
+                  <label class="form-check-label" for="rememberMe">
+                    Remember me
+                  </label>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Sign in
+            </button>
+            <div class="text-center">
+              <p>
+                Not a member?
+                <a href="#" (click)="isLoginForm = false">Register</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <ng-template #registerForm>
+          <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+            <div class="form-outline mb-3">
+              <input
+                type="email"
+                name="emailId"
+                [(ngModel)]="registerObj.emailId"
+                class="form-control"
+                required
+              />
+              <label class="form-label">Email address</label>
+            </div>
+            <div class="form-outline mb-3">
+              <input
+                type="text"
+                name="userName"
+                [(ngModel)]="registerObj.userName"
+                class="form-control"
+                required
+              />
+              <label class="form-label">User Name</label>
+            </div>
+            <div class="form-outline mb-3">
+              <input
+                type="text"
+                name="fullName"
+                [(ngModel)]="registerObj.fullName"
+                class="form-control"
+              />
+              <label class="form-label">Full Name</label>
+            </div>
+            <div class="form-outline mb-3">
+              <input
+                type="password"
+                name="password"
+                [(ngModel)]="registerObj.password"
+                class="form-control"
+                required
+              />
+              <label class="form-label">Password</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mb-3">
+              Register
+            </button>
+            <div class="text-center">
+              <p>
+                Already a member?
+                <a href="#" (click)="isLoginForm = true">Login</a>
+              </p>
+            </div>
+          </form>
+        </ng-template>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeModel()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
