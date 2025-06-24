@@ -47,7 +47,7 @@
   ],
   "buses": [
     {
-      "scheduleId": 1,
+      "id": 1,
       "busName": "Red Express",
       "vendorName": "Red Travels",
       "from": "Bangalore",
@@ -59,7 +59,7 @@
       "price": 500
     },
     {
-      "scheduleId": 2,
+      "id": 2,
       "busName": "Blue Line",
       "vendorName": "Blue Travels",
       "from": "Chennai",
@@ -71,7 +71,7 @@
       "price": 700
     },
     {
-      "scheduleId": 3,
+      "id": 3,
       "busName": "Green Bus",
       "vendorName": "GreenLine",
       "from": "Mysore",
