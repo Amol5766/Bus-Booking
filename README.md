@@ -2,6 +2,8 @@
 
 A lightweight bus seat booking application built with Angular 18 and powered by `json-server` as a mock backend.
 
+<img src='https://res.cloudinary.com/dlgz2t08o/image/upload/v1751189086/Bus_Booking_blgwir.png' alt='busBookingImg'>
+
 ---
 
 ## 📸 Features
